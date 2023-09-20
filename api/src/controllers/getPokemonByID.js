@@ -3,8 +3,9 @@ const axios = require('axios');
 const { Pokemon } = require('../db');
 
 const getPokemonByID = async (req, res) => {
-    const { idPokemon } = req.params;
+    let { idPokemon } = req.params;
     const { data } = await axios(`${URL}${idPokemon}`);
+    idPokemon = Number(idPokemon);
 
     try {
         if(isNaN(idPokemon)) {
