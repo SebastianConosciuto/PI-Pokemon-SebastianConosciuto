@@ -26,7 +26,7 @@ const getPokemonByName = async (req, res) => {
                 types: data.types.map((type) => type.type.name),
             };
         
-            return res.status(200).json({ result: 'succes', info: apiPokemon})    
+            return res.status(200).json({ result: 'success', info: apiPokemon })    
 
 
         } catch (error) {
