@@ -1,0 +1,27 @@
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.input {
+    border-radius: 8px;
+    border: 1px solid #FEBC27;
+    height: 24px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    width: 100%;
+}
+
+.input::placeholder {
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    text-align: center;
+}
+
+.searchImage {
+    height: 24px;
+}

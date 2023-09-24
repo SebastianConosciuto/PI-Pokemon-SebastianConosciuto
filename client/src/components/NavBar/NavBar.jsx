@@ -15,7 +15,7 @@ export const NavBar = () => {
         type=''
       />
       <Button 
-        text='Create Pokemon'
+        text='Add to Pokedex'
         cb={() => navigate('/form')}
         type=''
       />

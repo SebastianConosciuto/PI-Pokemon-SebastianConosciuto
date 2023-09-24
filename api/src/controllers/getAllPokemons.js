@@ -3,10 +3,11 @@ const axios = require('axios');
 const { Pokemon, Type } = require('../db');
 
 const getAllPokemons = async (req, res) => {
-    const { data } = await axios(`${URL}`);
+    const { data } = await axios(`${URL}?limit=12`);
     let apiPokemons = data.results;
 
     for (let i = 0; i < apiPokemons.length; i++) {
+        console.log(i)
         const { data } = await axios(apiPokemons[i].url)
         const poke = {
             id: data.id,
