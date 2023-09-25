@@ -1,3 +1,8 @@
 export const LOAD_POKES = 'LOAD_POKES'
 export const LOAD_ONE_POKE = 'LOAD_ONE_POKE'
 export const CLEAN_POKEMON = 'CLEAN_POKEMON'
+export const LOAD_TYPES = 'LOAD_TYPES'
+export const SET_TYPE = 'SET_TYPE'
+export const SET_ORIGIN = 'SET_ORIGIN'
+export const SET_ORDER = 'SET_ORDER'
+export const CLEAN_OFFSET = 'CLEAN_OFFSET'

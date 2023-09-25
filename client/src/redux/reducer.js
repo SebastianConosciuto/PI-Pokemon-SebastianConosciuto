@@ -1,11 +1,16 @@
-import { LOAD_POKES, LOAD_ONE_POKE, CLEAN_POKEMON } from "./actionsTypes"
+import { LOAD_POKES, LOAD_ONE_POKE, CLEAN_POKEMON, LOAD_TYPES, SET_TYPE, CLEAN_OFFSET, SET_ORIGIN, SET_ORDER } from "./actionsTypes"
 
 const initialState = {
     pokemons: [],
     prevPage: null,
     nextPage: 12,
     offset: 0,
-    detailPokemon: {}
+    offsetDatabase: false,
+    detailPokemon: {},
+    types: [],
+    typeSelected: 0, // id all = 0
+    origin: 0, // id all = 0
+    order: 0, // id all = 0
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -16,7 +21,8 @@ const reducer = (state = initialState, { type, payload }) => {
                 pokemons: payload.info,
                 nextPage: payload.nextPage,
                 prevPage: payload.prevPage,
-                offset: payload.offset
+                offset: payload.offset,
+                offsetDatabase: payload.offsetDatabase
             }
         
         case LOAD_ONE_POKE:
@@ -30,7 +36,37 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 detailPokemon: payload
             }
-        
+
+        case LOAD_TYPES:
+            return {
+                ...state,
+                types: payload
+            }
+
+        case SET_TYPE:
+            return {
+                ...state,
+                typeSelected: payload
+            }
+
+        case SET_ORIGIN:
+            return {
+                ...state,
+                origin: payload
+            }
+
+        case SET_ORDER:
+            return {
+                ...state,
+                order: payload
+            }
+    
+        case CLEAN_OFFSET:
+            return {
+                ...state,
+                ...payload
+            }
+
         default:
             return state
     }

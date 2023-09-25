@@ -19,7 +19,6 @@ const Search = ({ loadOnePoke, detailPokemon }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(name);
     loadOnePoke(name);
   }
 
