@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOAD_POKES, LOAD_ONE_POKE } from './actionsTypes'
+import { LOAD_POKES, LOAD_ONE_POKE, CLEAN_POKEMON } from './actionsTypes'
 
 export const loadPokes = (offset) => {
     const endpoint = `http://localhost:3001/pokemons`
@@ -46,4 +46,8 @@ export const loadOnePoke = (name) => {
             console.error(error.message);
         }
     };
+}
+
+export const cleanPokemon = () => {
+    return { type: CLEAN_POKEMON, payload: {} }
 }

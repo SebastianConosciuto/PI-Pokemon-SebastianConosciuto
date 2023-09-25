@@ -1,13 +1,40 @@
 import React from 'react';
-import styles from './detailPage.module.css';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+// import styles from './detailPage.module.css';
 import DetailCard from '../../components/DetailCards/DetailCard';
+import { Button } from '../../atoms/Button/Button';
+import { cleanPokemon } from '../../redux/actions';
 
+const DetailPage = ({ cleanPokemon }) => {
 
-export const DetailPage = () => {
+  const navigate = useNavigate()
+
+  const cleanAndReturn = () => {
+    cleanPokemon()
+    navigate('/home', { replace: true })
+  }
+
   return (
     <div>
       <DetailCard />
-      {/* <Button /> */}
+      <Button
+        type='primary'
+        text='Volver a Home'
+        cb={() => cleanAndReturn()}
+      />
     </div>
   )
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+     cleanPokemon: () => { dispatch(cleanPokemon()) },
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(DetailPage)
+

@@ -11,7 +11,7 @@ const Search = ({ loadOnePoke, detailPokemon }) => {
 
   useEffect(() => {
     if (detailPokemon?.hasOwnProperty('id')) {
-      navigate(`/detail/${detailPokemon.id}`)
+      navigate(`/detail/${detailPokemon.id}`, { replace: true })
     }
   }, [detailPokemon])
 

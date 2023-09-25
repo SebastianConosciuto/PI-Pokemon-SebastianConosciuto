@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loadPokes } from '../../redux/actions';
 import styles from './homeCards.module.css';
-import { Card } from '../../atoms/Card/Card';
+import Card from '../../atoms/Card/Card';
 import nextIcon from '../../assets/next.svg'
 import prevIcon from '../../assets/prev.svg'
 

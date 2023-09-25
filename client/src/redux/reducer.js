@@ -1,4 +1,4 @@
-import { LOAD_POKES, LOAD_ONE_POKE } from "./actionsTypes"
+import { LOAD_POKES, LOAD_ONE_POKE, CLEAN_POKEMON } from "./actionsTypes"
 
 const initialState = {
     pokemons: [],
@@ -24,6 +24,13 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 detailPokemon: payload
             }
+        
+        case CLEAN_POKEMON:
+            return {
+                ...state,
+                detailPokemon: payload
+            }
+        
         default:
             return state
     }
