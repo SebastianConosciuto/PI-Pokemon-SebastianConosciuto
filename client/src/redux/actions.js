@@ -40,7 +40,7 @@ export const loadOnePoke = (name) => {
 
             return dispatch({
                 type: LOAD_ONE_POKE,
-                payload: [data.info],
+                payload: data.info,
             });
         } catch (error) {
             console.error(error.message);

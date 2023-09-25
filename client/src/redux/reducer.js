@@ -4,7 +4,8 @@ const initialState = {
     pokemons: [],
     prevPage: null,
     nextPage: 12,
-    offset: 0
+    offset: 0,
+    detailPokemon: {}
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -21,7 +22,7 @@ const reducer = (state = initialState, { type, payload }) => {
         case LOAD_ONE_POKE:
             return {
                 ...state,
-                pokemons: payload
+                detailPokemon: payload
             }
         default:
             return state

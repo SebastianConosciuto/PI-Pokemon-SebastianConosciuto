@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './detailPage.module.css';
-import { DetailCards } from '../../components/DetailCards/DetailCards';
+import DetailCard from '../../components/DetailCards/DetailCard';
+
 
 export const DetailPage = () => {
   return (
     <div>
-      <DetailCards />
+      <DetailCard />
+      {/* <Button /> */}
     </div>
   )
 }

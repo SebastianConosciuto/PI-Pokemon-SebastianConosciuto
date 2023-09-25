@@ -7,12 +7,12 @@ export const Card = ({ pokemon }) => {
         <div className={styles.info}>
             <h1>{pokemon.name}</h1>
             {
-                pokemon.types.map(type => (
-                    <span>{type}</span>
+                pokemon.types.map((type, index) => (
+                    <span key={index + type}>{type}</span>
                 ))
             }
         </div>
-        <img className={styles.img} src={pokemon.image} alt="" />
+        <img className={styles.img} src={pokemon.image} alt={pokemon.name} />
     </div>
   )
 };

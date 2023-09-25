@@ -206,7 +206,7 @@ const HomeCards = ({ pokemons, nextPage, prevPage, offset, loadPokes }) => {
       }
       <div className={styles.cardsContainer}>
         {
-          pokemons?.map(pokemon => <Card pokemon={pokemon} />)
+          pokemons?.map(pokemon => <Card key={pokemon.id} pokemon={pokemon} />)
         }
       </div>
       <div onClick={moveNext} className={styles.next}>
