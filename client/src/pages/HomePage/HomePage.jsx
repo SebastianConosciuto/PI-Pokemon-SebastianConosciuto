@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './homePage.module.css'
 import { SearchBar } from '../../components/SearchBar/SearchBar'
-import { HomeCards } from '../../components/HomeCards/HomeCards'
+import HomeCards from '../../components/HomeCards/HomeCards'
 import { NavBar } from '../../components/NavBar/NavBar'
 
 

@@ -1,10 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { loadOnePoke } from '../../redux/actions'
 import styles from './search.module.css'
 import SearchIcon from '../../assets/search.svg' 
 
-export const Search = () => {
-  const handleSubmit = () => {
-    console.log('hola');
+const Search = () => {
+  const handleSubmit = (data) => {
+    console.log(data)
   }
 
   return (
@@ -16,3 +18,14 @@ export const Search = () => {
     </form>
   )
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+     loadOnePoke: (offset) => { dispatch(loadOnePoke(offset)) },
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Search)

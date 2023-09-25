@@ -8,16 +8,11 @@ export const NavBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <Button 
-        text="Professor Oak's Laboratory"
-        cb={() => navigate('/home')}
-        type=''
-      />
+    <div className={styles.container}>
       <Button 
         text='Add to Pokedex'
         cb={() => navigate('/form')}
-        type=''
+        type='secundary'
       />
     </div>
   )
