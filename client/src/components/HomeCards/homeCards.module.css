@@ -26,3 +26,6 @@
     overflow-y: auto;
 }
 
+.cardsContainer::-webkit-scrollbar {
+    scroll-behavior: smooth;
+}

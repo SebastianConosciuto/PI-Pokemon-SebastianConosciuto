@@ -25,30 +25,33 @@ const Filter = ({ types, setType, setOrigin, setOrder, cleanOffset }) => {
   
   return (
     <div className={styles.container}>
-      <div>
-        <select onChange={handleChangeType} name="type" id="type">
-          <option value={0}>all</option>
+      <div className={styles.filters}>
+        <label htmlFor="">Types</label>
+        <select className={styles.select} onChange={handleChangeType} name="type" id="type">
+          <option className={styles.options} value={0}>all</option>
           {
             types.length && types.map((type) => 
-              <option key={type.id} value={type.id}>{type.name}</option>
+              <option className={styles.options} key={type.id} value={type.id}>{type.name}</option>
             )
           }
         </select>
       </div>
-      <div>
-        <select onChange={handleChangeOrigin} name="origen" id="origen">
-          <option value={0}>all</option>
-          <option value={1}>db</option>
-          <option value={2}>api</option>
+      <div className={styles.filters}>
+        <label htmlFor="">Origin</label>
+        <select className={styles.select} onChange={handleChangeOrigin} name="origen" id="origen">
+          <option className={styles.options} value={0}>all</option>
+          <option className={styles.options} value={1}>db</option>
+          <option className={styles.options} value={2}>api</option>
         </select>
       </div>
-      <div>
-        <select onChange={handleChangeOrder} name="orden" id="orden">
-          <option value={0}>Default</option>
-          <option value={1}>A-Z</option>
-          <option value={2}>Z-A</option>
-          <option value={3}>Ataque Asc</option>
-          <option value={4}>Ataque Des</option>
+      <div className={styles.filters}>
+        <label htmlFor="">Order</label>
+        <select className={styles.select} onChange={handleChangeOrder} name="orden" id="orden">
+          <option className={styles.options} value={0}>Default</option>
+          <option className={styles.options} value={1}>A-Z</option>
+          <option className={styles.options} value={2}>Z-A</option>
+          <option className={styles.options} value={3}>Ataque Asc</option>
+          <option className={styles.options} value={4}>Ataque Des</option>
         </select>
       </div>
     </div>

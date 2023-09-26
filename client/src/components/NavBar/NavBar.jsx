@@ -12,7 +12,7 @@ export const NavBar = () => {
       <Button 
         text='Add to Pokedex'
         cb={() => navigate('/form')}
-        type='secundary'
+        type='secondary'
       />
     </div>
   )
