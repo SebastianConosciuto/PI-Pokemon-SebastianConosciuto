@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import styles from './detailPage.module.css';
+import styles from './detailPage.module.css';
 import DetailCard from '../../components/DetailCards/DetailCard';
 import { Button } from '../../atoms/Button/Button';
 import { cleanPokemon } from '../../redux/actions';
@@ -16,7 +16,7 @@ const DetailPage = ({ cleanPokemon }) => {
   }
 
   return (
-    <div>
+    <div className={styles.page}>
       <DetailCard />
       <Button
         type='primary'

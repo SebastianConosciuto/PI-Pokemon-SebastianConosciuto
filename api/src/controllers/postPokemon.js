@@ -4,7 +4,7 @@ const postPokemon = async (req, res) => {
     try {
         const { name, image, hp, attack, defense, speed, height, weight, types } = req.body;
 
-        if (!name || !image || !hp || !attack || !defense || !speed || !height || !weight || !types.length) {
+        if (!name || !image || !hp || !attack || !defense || !speed || !height || !weight || !types?.length) {
             return res.status(400).json({ error: 'Missing data of the pokemon'});
         }   
         

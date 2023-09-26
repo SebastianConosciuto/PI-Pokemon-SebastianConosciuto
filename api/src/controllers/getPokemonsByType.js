@@ -25,7 +25,7 @@ const getPokemonsByType = async (req, res) => {
         if (origin != 1) {
             apiPokemons = data.pokemon;
     
-            for (let i = offset; i < limit + offset; i++) {
+            for (let i = 0; i < apiPokemons.length; i++) {
                 const { data } = await axios(apiPokemons[i].pokemon.url)
                 const poke = {
                     id: data.id,
@@ -46,22 +46,50 @@ const getPokemonsByType = async (req, res) => {
         let dbPokemons = []
         
         if (origin != 2) dbPokemons = await Pokemon.findAll({ include: { model: Type, attributes: ['name'], where: { id: idType }, through: { attributes: [] } } })
+
+        // extraigo la info que necesito y le configuro los types para estandarizar la respuesta de la base de datos
+
+        dbPokemons = dbPokemons.map((pokemon) => {
+            return ({
+              ...pokemon.dataValues,
+              types: pokemon.types.map((type) => type.name)
+            })
+          })
     
         const completeList = [...apiPokemons, ...dbPokemons]
-        console.log(completeList)
 
         switch (order) {
             case 1:
                 // A-Z
+                completeList.sort((a, b) => {
+                  const nameA = a.name.toLowerCase();
+                  const nameB = b.name.toLowerCase();
+                  if (nameA < nameB) return -1;
+                  if (nameA > nameB) return 1;
+                  return 0;
+                });
+                break;
             case 2:
                 // Z-A
+                completeList.sort((a, b) => {
+                  const nameA = a.name.toLowerCase();
+                  const nameB = b.name.toLowerCase();
+                  if (nameA > nameB) return -1; // Reverse the comparison
+                  if (nameA < nameB) return 1;  // Reverse the comparison
+                  return 0;
+                })
+                break;
             case 3:
                 // Ataque asc
+                completeList.sort((a, b) => a.attack - b.attack);
+                break;
             case 4:
                 // Ataque des
+                completeList.sort((a, b) => b.attack - a.attack);
+                break;
             default:
                 break;
-        }
+        }
     
         const limitedList = completeList.slice(offset, limit + offset)
     
