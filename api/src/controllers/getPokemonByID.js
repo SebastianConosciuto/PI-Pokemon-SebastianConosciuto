@@ -3,12 +3,13 @@ const axios = require('axios');
 const { Pokemon } = require('../db');
 
 const getPokemonByID = async (req, res) => {
+    console.log('a');
     let { idPokemon } = req.params;
     const { data } = await axios(`${URL}${idPokemon}`);
-    idPokemon = Number(idPokemon);
 
     try {
-        if(isNaN(idPokemon)) {
+        if(isNaN(Number(idPokemon))) {
+            console.log('a');
             const dbPokemon = await Pokemon.findByPk(idPokemon);
             if (dbPokemon) {
                 return res.status(200).json({ result: 'success', info: dbPokemon})
@@ -33,11 +34,11 @@ const getPokemonByID = async (req, res) => {
         };
 
         return res.status(200).json({ result: 'succes', info: apiPokemon });
-    } catch (error) {
+     } catch (error) {
         return error.message.includes('ID') 
             ? res.status(404).json({ message: error.message }) 
             : res.status(500).json({ message: error.message })
-    }
+     }
 }
 
 module.exports = {

@@ -26,9 +26,9 @@ const Card = ({ pokemon, loadOnePoke, detailPokemon }) => {
         <div className={styles.info}>
             <h1>{pokemon.name}</h1>
             {
-                pokemon.types.map((type, index) => (
-                    <span key={index + type}>{type}</span>
-                ))
+              pokemon.types.map((type) => (
+                <span>{type.name ? type.name : type}</span>
+              ))
             }
         </div>
         <img className={styles.img} src={pokemon.image} alt={pokemon.name} />

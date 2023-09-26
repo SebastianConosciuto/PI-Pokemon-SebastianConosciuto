@@ -16,9 +16,7 @@ const getAllPokemons = async (req, res) => {
     
         let apiPokemons = []
         let dbPokemons = []
-        console.log('0')
         if (!offsetDatabase && origin != 1){
-            console.log('1')
             const { data } = await axios(`${URL}?limit=${limit}&offset=${offset}`);
             
             apiPokemons = data.results
@@ -39,23 +37,18 @@ const getAllPokemons = async (req, res) => {
                 };
                 apiPokemons[i] = poke
             }
-            console.log('2')
         }
         
         if (origin != 2) {
-            console.log('3')
-            dbPokemons = await Pokemon.findAll({ include: { model: Type, through: 'pokemon_type' } })
+            dbPokemons = await Pokemon.findAll({ include: { model: Type, attributtes: ['name'], through: { attributtes: [] } } })
         }
         
-        console.log('4')
         if (apiPokemons.length < limit && offsetDatabase == false && dbPokemons.length > 0) {
-            console.log('5')
             dbPokemons = dbPokemons.slice(0, limit - apiPokemons.length)
             offset = dbPokemons.indexOf(dbPokemons[-1])
             offsetDatabase = true
             apiPokemons = [...apiPokemons, ...dbPokemons]
         } else if (offsetDatabase == true) {
-            console.log('6')
             apiPokemons = [...dbPokemons.slice(offset, offset + limit)]
         }
 

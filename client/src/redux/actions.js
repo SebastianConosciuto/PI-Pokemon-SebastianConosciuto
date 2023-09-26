@@ -41,8 +41,6 @@ export const loadOnePoke = (name) => {
 
             // atajar errores
 
-            console.log(data)
-
             return dispatch({
                 type: LOAD_ONE_POKE,
                 payload: data.info,
