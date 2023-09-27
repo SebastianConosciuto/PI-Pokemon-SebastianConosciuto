@@ -19,8 +19,8 @@ const DetailPage = ({ cleanPokemon }) => {
     <div className={styles.page}>
       <DetailCard />
       <Button
-        type='primary'
-        text='Volver a Home'
+        type='terciary'
+        text='Go back Home'
         cb={() => cleanAndReturn()}
       />
     </div>

@@ -19,11 +19,28 @@
 
 .secondaryButton {
     font-family: 'Press Start 2P', cursive;
-    font-size: small;
+    font-size: large;
     word-break: break-word;
     width: 300px;
     border: 2px solid;
     padding: 4px;
     border-radius: 8px;
-     
+}
+
+.terciaryButton {
+    padding: 16px;
+    background-color: #c12025da;
+    border-radius: 8px;
+    border: 1px solid #FEBC27;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    transition: all 0.3s ease;
+}
+
+.terciaryButton:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
+    background-color: red;
+    cursor: pointer;
 }

@@ -3,7 +3,8 @@ import styles from './button.module.css'
 
 const buttonTypes = {
     primary: styles.primaryButton,
-    secondary: styles.secondaryButton
+    secondary: styles.secondaryButton,
+    terciary: styles.terciaryButton
 }
 
 export const Button = ({ text, cb, type }) => {

@@ -37,9 +37,8 @@ export const loadOnePoke = (name) => {
 
     return async (dispatch) => {
         try {
+            
             const { data } = await axios.get(endpoint, { params: { name }})
-
-            // atajar errores
 
             return dispatch({
                 type: LOAD_ONE_POKE,

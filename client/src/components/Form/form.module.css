@@ -1,0 +1,32 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    margin-right: 350px;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #febc27;
+    background-color: #A51B20;
+    transition: all 0.3s ease;
+    gap: 8px;
+    font-size: 20px;
+}
+
+.form:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
+}
+
+.title {
+    font-size: 40px;
+}
+
+
+.error {
+    color:#febc27;
+}
+
+.types {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
