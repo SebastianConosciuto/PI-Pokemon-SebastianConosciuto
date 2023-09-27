@@ -4,7 +4,6 @@ import { SearchBar } from '../../components/SearchBar/SearchBar'
 import HomeCards from '../../components/HomeCards/HomeCards'
 import { NavBar } from '../../components/NavBar/NavBar'
 
-
 export const HomePage = () => {
   return (
     <div className={styles.page}>

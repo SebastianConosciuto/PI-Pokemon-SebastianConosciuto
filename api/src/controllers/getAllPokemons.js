@@ -40,7 +40,7 @@ const getAllPokemons = async (req, res) => {
         }
         
         if (origin != 2) {
-            dbPokemons = await Pokemon.findAll({ include: { model: Type, attributtes: ['name'], through: { attributtes: [] } } })
+            dbPokemons = await Pokemon.findAll({ include: { model: Type, attributes: ['name'], through: { attributes: [] } } })
         }
         
         if (apiPokemons.length < limit && offsetDatabase == false && dbPokemons.length > 0) {
@@ -52,7 +52,6 @@ const getAllPokemons = async (req, res) => {
             apiPokemons = [...dbPokemons.slice(offset, offset + limit)]
         }
 
-        console.log(apiPokemons)
         return res.status(200).json({ result: 'success', info: apiPokemons, nextPage: offset + limit, prevPage: offset - limit, offsetDatabase })
     } catch {
         return res.status(500).json({ result: 'failed', error: 'Internal Server Error' })

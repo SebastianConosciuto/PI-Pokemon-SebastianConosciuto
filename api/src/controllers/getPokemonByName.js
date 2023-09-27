@@ -1,6 +1,6 @@
 const URL = 'https://pokeapi.co/api/v2/pokemon/';
 const axios = require('axios');
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
 
 const getPokemonByName = async (req, res) => {
     const { name } = req.query;
@@ -30,17 +30,11 @@ const getPokemonByName = async (req, res) => {
 
 
         } catch (error) {
-            const dbPokemon = await Pokemon.findAll()
-            let pokemonName;
-            for (let i = 0; i < dbPokemon; i++) {
-                pokemonName = dbPokemon[i].name.toLowerCase();
-                if (pokemonName === name) {
-                    res.status(200).json({ result: 'success', info: foundPokemon[i] });
-                    return;
-                }
-            }
+            const dbPokemon = await Pokemon.findOne({ where: { name: name }, include: { model: Type, attributes: ['name'], through: { attributes: [] } } })
+            return res.status(200).json({ result: 'success', info: dbPokemon });
         }
     } catch (error) {
+        console.error(error);
         return res.status(500).json({ error: error.message })
     }
 }

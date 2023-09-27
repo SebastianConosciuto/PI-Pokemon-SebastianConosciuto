@@ -45,7 +45,7 @@ const Filter = ({ types, setType, setOrigin, setOrder, cleanOffset }) => {
         </select>
       </div>
       <div className={styles.filters}>
-        <label htmlFor="">Order</label>
+        <label>Order</label>
         <select className={styles.select} onChange={handleChangeOrder} name="orden" id="orden">
           <option className={styles.options} value={0}>Default</option>
           <option className={styles.options} value={1}>A-Z</option>

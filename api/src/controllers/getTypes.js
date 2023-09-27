@@ -19,8 +19,6 @@ const getTypes = async (req, res) => {
                 })
             })
 
-            console.log(apiTypesWithId)
-
             await Type.bulkCreate(apiTypesWithId);
 
             return res.status(200).json({ result: 'success', info: apiTypesWithId});
