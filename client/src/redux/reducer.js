@@ -1,4 +1,4 @@
-import { LOAD_POKES, LOAD_ONE_POKE, CLEAN_POKEMON, LOAD_TYPES, SET_TYPE, CLEAN_OFFSET, SET_ORIGIN, SET_ORDER } from "./actionsTypes"
+import { LOAD_POKES, LOAD_ONE_POKE, CLEAN_POKEMON, LOAD_TYPES, SET_TYPE, CLEAN_OFFSET, SET_ORIGIN, SET_ORDER, LOADING_POKES } from "./actionsTypes"
 
 const initialState = {
     pokemons: [],
@@ -11,6 +11,7 @@ const initialState = {
     typeSelected: 0, // id all = 0
     origin: 0, // id all = 0
     order: 0, // id all = 0
+    loadingPokes: false
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -65,6 +66,12 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 ...payload
+            }
+
+        case LOADING_POKES:
+            return {
+                ...state,
+                loadingPokes: payload
             }
 
         default:

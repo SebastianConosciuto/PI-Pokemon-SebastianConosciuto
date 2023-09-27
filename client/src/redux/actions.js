@@ -1,35 +1,43 @@
 import axios from 'axios';
-import { LOAD_POKES, LOAD_ONE_POKE, CLEAN_POKEMON, LOAD_TYPES, SET_TYPE, SET_ORIGIN, SET_ORDER, CLEAN_OFFSET } from './actionsTypes'
+import { LOAD_POKES, LOAD_ONE_POKE, CLEAN_POKEMON, LOAD_TYPES, SET_TYPE, SET_ORIGIN, SET_ORDER, CLEAN_OFFSET, LOADING_POKES } from './actionsTypes'
 
-export const loadPokes = (offset, offsetDatabase, typeSelected, origin, order) => {
+export const loadPokes = (offset, offsetDatabase, typeSelected, origin, order) => async (dispatch) => {
     const endpoint = `http://localhost:3001/pokemons`
     const endpointTypes = `http://localhost:3001/types/${typeSelected}`
 
-    return async (dispatch) => {
-        try {
+    dispatch({
+        type: LOADING_POKES,
+        payload: true
+    })
 
-            let data = {}
+    try {
 
-            if (Number(typeSelected) === 0) {
-                const raw = await axios.get(endpoint, { params: { offset, offsetDatabase, origin } })
-                data = raw.data
-            } else {
-                const raw = await axios.get(endpointTypes, { params: { offset, offsetDatabase, origin, order } })
-                data = raw.data
-            }
+        let data = {}
 
-            data.offset = offset
-
-            // atajar errores
-
-            return dispatch({
-                type: LOAD_POKES,
-                payload: data,
-            });
-        } catch (error) {
-            console.error(error.message);
+        if (Number(typeSelected) === 0) {
+            const raw = await axios.get(endpoint, { params: { offset, offsetDatabase, origin } })
+            data = raw.data
+        } else {
+            const raw = await axios.get(endpointTypes, { params: { offset, offsetDatabase, origin, order } })
+            data = raw.data
         }
-    };
+
+        data.offset = offset
+
+        // atajar errores
+
+        dispatch({
+            type: LOADING_POKES,
+            payload: false
+        })
+
+        return dispatch({
+            type: LOAD_POKES,
+            payload: data,
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
 }
 
 export const loadOnePoke = (name) => {

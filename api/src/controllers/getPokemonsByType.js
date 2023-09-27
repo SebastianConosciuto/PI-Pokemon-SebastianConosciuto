@@ -3,7 +3,7 @@ const axios = require('axios');
 const { Pokemon, Type } = require('../db');
 
 const getPokemonsByType = async (req, res) => {
-    
+
     let { idType } = req.params;
     if (!idType) return res.status(400).json({ error: 'Missing "type" property' })
     // ?limit=12&offset=xx&typeId=id
