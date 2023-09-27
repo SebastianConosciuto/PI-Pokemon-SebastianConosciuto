@@ -44,3 +44,8 @@
     background-color: red;
     cursor: pointer;
 }
+
+.terciaryButton:disabled, .terciaryButton[disabled] {
+    filter: saturate(0.2);
+    cursor: not-allowed; 
+}

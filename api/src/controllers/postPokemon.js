@@ -4,7 +4,7 @@ const postPokemon = async (req, res) => {
     try {
         const { name, image, hp, attack, defense, speed, height, weight, types } = req.body;
 
-        if (!name || !image || !hp || !attack || !defense || !speed || !height || !weight || !types?.length) {
+        if (!name || !image || !hp || !attack || !defense || !types?.length) {
             return res.status(400).json({ error: 'Missing data of the pokemon'});
         }   
         
@@ -19,8 +19,6 @@ const postPokemon = async (req, res) => {
             weight,
         })
 
-        console.log(newPokemon)
-
         const dbTypes = types.map( async (type) => {
             const [foundType] = await Type.findOrCreate({
                 where: { name: type },
@@ -30,8 +28,6 @@ const postPokemon = async (req, res) => {
         })
 
         const foundTypes = await Promise.all(dbTypes)
-
-        console.log(foundTypes)
 
         await newPokemon.addTypes(foundTypes)
 

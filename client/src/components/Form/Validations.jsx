@@ -49,7 +49,7 @@ const validations = (input) => {
     }
     
 
-    if (!errors.types) errors.types = []; 
+    // if (!errors.types) errors.types = []; 
 
     return errors;
 };

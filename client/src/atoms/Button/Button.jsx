@@ -7,12 +7,13 @@ const buttonTypes = {
     terciary: styles.terciaryButton
 }
 
-export const Button = ({ text, cb, type }) => {
+export const Button = ({ text, cb, type, disabled=false }) => {
   return (
     <div>
         <button 
-            onClick={cb} 
-            className={buttonTypes[type]}
+          disabled={disabled}
+          onClick={cb} 
+          className={buttonTypes[type]}
         >
             {text}
         </button>

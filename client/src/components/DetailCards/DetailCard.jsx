@@ -4,10 +4,7 @@ import styles from "./detailCards.module.css";
 
 const DetailCard = ({ detailPokemon }) => {
 
-
-
   if (detailPokemon?.hasOwnProperty("id")) {
-    console.log(detailPokemon)
     const typesClass = detailPokemon?.types ? detailPokemon?.types[0] : "";
     return (
       <div className={`${styles.container} ${styles[typesClass || 'default']}`}>

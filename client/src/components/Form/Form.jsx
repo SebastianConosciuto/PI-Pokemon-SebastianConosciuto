@@ -1,39 +1,30 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { loadTypes } from "../../redux/actions";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import validations from "./Validations";
 import { Button } from "../../atoms/Button/Button";
 import styles from "./form.module.css";
 
 export const Form = () => {
-  const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
-
-  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
     image: "",
-    hp: "",
-    attack: "",
-    defense: "",
-    speed: "",
-    height: "",
-    weight: "",
+    hp: null,
+    attack: null,
+    defense: null,
+    speed: null,
+    height: null,
+    weight: null,
     types: [],
   });
 
-  useEffect(() => {
-    dispatch(loadTypes());
-  }, []);
-
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [errors, setErrors] = useState({});
+  const [enabled, setEnabled] = useState(false)
 
   const handleTypeChange = (event) => {
-    console.log(event);
     let selectedOptions = [...event.target.selectedOptions];
     const maxOptions = 1;
     if (selectedOptions.length > maxOptions) {
@@ -46,12 +37,19 @@ export const Form = () => {
       ...formData,
       types: selectedOptions,
     });
+    const auxValidations = validations({
+      ...formData,
+      types: selectedOptions,
+    })   
     setErrors(
-      validations({
-        ...formData,
-        types: selectedOptions,
-      })
+      auxValidations
     );
+    console.log(auxValidations)
+    if (!Object.getOwnPropertyNames(auxValidations).length) {
+      setEnabled(true)
+    } else {
+      setEnabled(false)
+    }
     setSelectedTypes(selectedOptions);
   };
 
@@ -76,12 +74,19 @@ export const Form = () => {
       ...formData,
       [name]: value,
     });
+    const auxValidations = validations({
+      ...formData,
+      [name]: value,
+    })   
     setErrors(
-      validations({
-        ...formData,
-        [name]: value,
-      })
+      auxValidations
     );
+    console.log(auxValidations)
+    if (!Object.getOwnPropertyNames(auxValidations).length) {
+      setEnabled(true)
+    } else {
+      setEnabled(false)
+    }
   };
 
   return (
@@ -189,6 +194,14 @@ export const Form = () => {
 
       <label htmlFor="types">Type: </label>
       <div className={styles.types}>
+
+        {/* {types.map((tipo) => (
+          <>
+            <input onChange={handleTypeChange} type="checkbox" id={tipo.name} name={tipo.name} value={tipo.name} />
+            <label for={tipo.name}>{tipo.name}</label><br/>
+          </>
+        ))} */}
+
         <select id="types" multiple={true} onChange={handleTypeChange} required>
           {types.map((tipo) => (
             <option value={tipo.name}>{tipo.name}</option>
@@ -201,7 +214,7 @@ export const Form = () => {
       <div>
         <p>Selected(s): {selectedTypes.join(", ")}</p>
       </div>
-      <Button type={"terciary"} text={"create Pokemon"} cb={handleSubmit} />
+      <Button disabled={!enabled} type={"terciary"} text={"create Pokemon"} cb={handleSubmit} />
     </form>
   );
 };
